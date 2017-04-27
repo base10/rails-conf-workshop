@@ -2,7 +2,8 @@ module Services
   module User
     class Signup
 
-      # include ActiveModel::Validations
+      include ActiveModel::Validations
+      validates :name,  presence: true
 
       def initialize(params)
         @params = params.slice(:email, :name)

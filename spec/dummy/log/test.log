@@ -5739,3 +5739,437 @@ Processing by InvitationsController#accept as HTML
 Completed 200 OK in 12ms (Views: 0.3ms | ActiveRecord: 1.1ms)
   [1m[35m (0.0ms)[0m  [1m[34mSELECT SUM("credit_transactions"."cents") FROM "credit_transactions" WHERE "credit_transactions"."user_id" = 1[0m
   [1m[35m (0.6ms)[0m  [1m[31mrollback transaction[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1m[34mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "ar_internal_metadata"."value" FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ?[0m  [["key", :environment]]
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1m[34mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (0.0ms)[0m  [1m[34mSELECT "ar_internal_metadata"."value" FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ?[0m  [["key", :environment]]
+  [1m[36mActiveRecord::SchemaMigration Load (0.0ms)[0m  [1m[34mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (0.0ms)[0m  [1m[34mSELECT "ar_internal_metadata"."value" FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ?[0m  [["key", :environment]]
+  [1m[35m (1.3ms)[0m  [1m[35mCREATE TABLE "credit_transactions" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "user_id" integer NOT NULL, "cents" integer DEFAULT 0 NOT NULL, "source_type" varchar NOT NULL, "source_id" integer NOT NULL)[0m
+  [1m[35m (0.1ms)[0m  [1m[34mselect sqlite_version(*)[0m
+  [1m[35m (0.9ms)[0m  [1m[35mCREATE  INDEX "index_credit_transactions_on_source_type_and_source_id" ON "credit_transactions" ("source_type", "source_id")[0m
+  [1m[35m (0.1ms)[0m  [1m[34m            SELECT sql
+            FROM sqlite_master
+            WHERE name='index_credit_transactions_on_source_type_and_source_id' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_credit_transactions_on_source_type_and_source_id' AND type='index'
+[0m
+  [1m[35m (0.9ms)[0m  [1m[35mCREATE  INDEX "index_credit_transactions_on_user_id" ON "credit_transactions" ("user_id")[0m
+  [1m[35m (0.9ms)[0m  [1m[35mCREATE TABLE "invitations" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "inviter_id" integer NOT NULL, "invitee_id" integer, "invitee_email" varchar NOT NULL, "accepted" boolean DEFAULT 'f')[0m
+  [1m[35m (0.9ms)[0m  [1m[35mCREATE  INDEX "index_invitations_on_invitee_id" ON "invitations" ("invitee_id")[0m
+  [1m[35m (0.1ms)[0m  [1m[34m            SELECT sql
+            FROM sqlite_master
+            WHERE name='index_invitations_on_invitee_id' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_invitations_on_invitee_id' AND type='index'
+[0m
+  [1m[35m (0.9ms)[0m  [1m[35mCREATE  INDEX "index_invitations_on_inviter_id" ON "invitations" ("inviter_id")[0m
+  [1m[35m (0.7ms)[0m  [1m[35mCREATE TABLE "users" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "email" varchar, "name" varchar)[0m
+  [1m[35m (1.5ms)[0m  [1m[35mCREATE TABLE "schema_migrations" ("version" varchar NOT NULL PRIMARY KEY)[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT version FROM "schema_migrations"[0m
+  [1m[35m (1.0ms)[0m  [1m[32mINSERT INTO "schema_migrations" (version) VALUES (20170320162131)[0m
+  [1m[35m (0.7ms)[0m  [1m[32mINSERT INTO "schema_migrations" (version) VALUES
+(20170317141651),
+(20170320153113);
+
+[0m
+  [1m[35m (0.9ms)[0m  [1m[35mCREATE TABLE "ar_internal_metadata" ("key" varchar NOT NULL PRIMARY KEY, "value" varchar, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL)[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.1ms)[0m  [1m[34mSELECT  "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? LIMIT ?[0m  [["key", :environment], ["LIMIT", 1]]
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35mSQL (0.3ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["key", "environment"], ["value", "test"], ["created_at", 2017-04-27 15:27:45 UTC], ["updated_at", 2017-04-27 15:27:45 UTC]]
+  [1m[35m (0.7ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.1ms)[0m  [1m[34mSELECT  "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? LIMIT ?[0m  [["key", :environment], ["LIMIT", 1]]
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.5ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT COUNT(*) FROM "users"[0m
+  [1m[35m (0.0ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mUser Exists (0.1ms)[0m  [1m[34mSELECT  1 AS one FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "john@doe.com"], ["LIMIT", 1]]
+  [1m[35mSQL (0.5ms)[0m  [1m[32mINSERT INTO "users" ("email", "name") VALUES (?, ?)[0m  [["email", "john@doe.com"], ["name", "john doe"]]
+[ActiveJob] Enqueued ActionMailer::DeliveryJob (Job ID: 31aec73c-f0fd-4897-8cbe-4bf0f0bfe84f) to Async(mailers) with arguments: "AppMailer", "signup_email", "deliver_now", #<GlobalID:0x007fab85a16c50 @uri=#<URI::GID gid://dummy/User/1>>
+  [1m[35m (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT COUNT(*) FROM "users"[0m
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[35m (0.4ms)[0m  [1m[31mrollback transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mUser Exists (0.1ms)[0m  [1m[34mSELECT  1 AS one FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "john@doe.com"], ["LIMIT", 1]]
+  [1m[35mSQL (0.2ms)[0m  [1m[32mINSERT INTO "users" ("email", "name") VALUES (?, ?)[0m  [["email", "john@doe.com"], ["name", "john doe"]]
+  [1m[35m (0.0ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.3ms)[0m  [1m[31mrollback transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT COUNT(*) FROM "users"[0m
+  [1m[35m (0.0ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mUser Exists (0.1ms)[0m  [1m[34mSELECT  1 AS one FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "john@doe.com"], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[31mROLLBACK TO SAVEPOINT active_record_1[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT COUNT(*) FROM "users"[0m
+  [1m[35m (0.0ms)[0m  [1m[31mrollback transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mUser Exists (0.1ms)[0m  [1m[34mSELECT  1 AS one FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "foo-876e7715-d48d-4f28-881c-181d6907bf50@example.com"], ["LIMIT", 1]]
+  [1m[35mSQL (0.2ms)[0m  [1m[32mINSERT INTO "users" ("email", "name") VALUES (?, ?)[0m  [["email", "foo-876e7715-d48d-4f28-881c-181d6907bf50@example.com"], ["name", "john doe"]]
+[ActiveJob] Enqueued ActionMailer::DeliveryJob (Job ID: eaabb565-aad5-4ce8-acd4-a915209f4964) to Async(mailers) with arguments: "AppMailer", "signup_email", "deliver_now", #<GlobalID:0x007fab85b51890 @uri=#<URI::GID gid://dummy/User/1>>
+  [1m[35m (0.0ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.2ms)[0m  [1m[32mINSERT INTO "invitations" ("inviter_id", "invitee_email") VALUES (?, ?)[0m  [["inviter_id", 1], ["invitee_email", "invitee@example.com"]]
+[ActiveJob] Enqueued ActionMailer::DeliveryJob (Job ID: 95495eae-6ce6-4aa2-9cef-180161bf78c9) to Async(mailers) with arguments: "AppMailer", "invitation_email", "deliver_now", #<GlobalID:0x007fab85af5568 @uri=#<URI::GID gid://dummy/Invitation/1>>
+  [1m[35m (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT COUNT(*) FROM "users"[0m
+Processing by InvitationsController#accept as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mInvitation Load (0.2ms)[0m  [1m[34mSELECT  "invitations".* FROM "invitations" WHERE "invitations"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mInvitation Load (0.1ms)[0m  [1m[34mSELECT  "invitations".* FROM "invitations" WHERE "invitations"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[35m (0.0ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mUser Exists (0.1ms)[0m  [1m[34mSELECT  1 AS one FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "invitee@example.com"], ["LIMIT", 1]]
+  [1m[35mSQL (0.1ms)[0m  [1m[32mINSERT INTO "users" ("email") VALUES (?)[0m  [["email", "invitee@example.com"]]
+  [1m[35m (0.0ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.0ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[35mSQL (0.1ms)[0m  [1m[33mUPDATE "invitations" SET "invitee_id" = ? WHERE "invitations"."id" = ?[0m  [["invitee_id", 2], ["id", 1]]
+  [1m[35m (0.0ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.0ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.1ms)[0m  [1m[33mUPDATE "invitations" SET "accepted" = ? WHERE "invitations"."id" = ?[0m  [["accepted", true], ["id", 1]]
+  [1m[35m (0.0ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.1ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.2ms)[0m  [1m[32mINSERT INTO "credit_transactions" ("user_id", "cents", "source_type", "source_id") VALUES (?, ?, ?, ?)[0m  [["user_id", 1], ["cents", 500], ["source_type", "Invitation"], ["source_id", 1]]
+  [1m[35m (0.0ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+[ActiveJob] Enqueued ActionMailer::DeliveryJob (Job ID: db6bd53c-8a94-4faf-ae5d-d5b09655d959) to Async(mailers) with arguments: "AppMailer", "notify_payment", "deliver_now", #<GlobalID:0x007fab85995f88 @uri=#<URI::GID gid://dummy/CreditTransaction/1>>
+Completed 200 OK in 26ms (Views: 0.3ms | ActiveRecord: 1.6ms)
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT COUNT(*) FROM "users"[0m
+  [1m[36mInvitation Load (0.0ms)[0m  [1m[34mSELECT  "invitations".* FROM "invitations" WHERE "invitations"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mUser Load (0.0ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[35m (0.5ms)[0m  [1m[31mrollback transaction[0m
+  [1m[36mCreditTransaction Load (0.1ms)[0m  [1m[34mSELECT  "credit_transactions".* FROM "credit_transactions" WHERE "credit_transactions"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mUser Exists (0.1ms)[0m  [1m[34mSELECT  1 AS one FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "foo-74b12723-c4d4-44b1-bb79-0304dadf60f5@example.com"], ["LIMIT", 1]]
+  [1m[35mSQL (0.2ms)[0m  [1m[32mINSERT INTO "users" ("email", "name") VALUES (?, ?)[0m  [["email", "foo-74b12723-c4d4-44b1-bb79-0304dadf60f5@example.com"], ["name", "john doe"]]
+[ActiveJob] Enqueued ActionMailer::DeliveryJob (Job ID: 5cff7b4b-2bda-45e8-8354-4e6afbce23f0) to Async(mailers) with arguments: "AppMailer", "signup_email", "deliver_now", #<GlobalID:0x007fab85899940 @uri=#<URI::GID gid://dummy/User/1>>
+  [1m[35m (0.0ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.0ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[35mSQL (0.1ms)[0m  [1m[32mINSERT INTO "invitations" ("inviter_id", "invitee_email") VALUES (?, ?)[0m  [["inviter_id", 1], ["invitee_email", "invitee@example.com"]]
+[ActiveJob] Enqueued ActionMailer::DeliveryJob (Job ID: ce19c05d-4fd1-4bfb-94d0-493f701cdd79) to Async(mailers) with arguments: "AppMailer", "invitation_email", "deliver_now", #<GlobalID:0x007fab848bbf28 @uri=#<URI::GID gid://dummy/Invitation/1>>
+  [1m[35m (0.0ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[36mInvitation Load (0.1ms)[0m  [1m[34mSELECT  "invitations".* FROM "invitations" WHERE "invitations"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT SUM("credit_transactions"."cents") FROM "credit_transactions" WHERE "credit_transactions"."user_id" = 1[0m
+Processing by InvitationsController#accept as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mInvitation Load (0.0ms)[0m  [1m[34mSELECT  "invitations".* FROM "invitations" WHERE "invitations"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[35m (0.0ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mUser Exists (0.1ms)[0m  [1m[34mSELECT  1 AS one FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "invitee@example.com"], ["LIMIT", 1]]
+  [1m[35mSQL (0.1ms)[0m  [1m[32mINSERT INTO "users" ("email") VALUES (?)[0m  [["email", "invitee@example.com"]]
+[ActiveJob] Enqueued ActionMailer::DeliveryJob (Job ID: 1f57111b-e3c0-40bb-a5b1-0abd4c15831c) to Async(mailers) with arguments: "AppMailer", "welcome_email", "deliver_now", #<GlobalID:0x007fab848a38d8 @uri=#<URI::GID gid://dummy/User/2>>
+  [1m[35m (0.0ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.0ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[36mUser Load (0.0ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[35mSQL (0.1ms)[0m  [1m[33mUPDATE "invitations" SET "invitee_id" = ? WHERE "invitations"."id" = ?[0m  [["invitee_id", 2], ["id", 1]]
+  [1m[35m (0.0ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.0ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.0ms)[0m  [1m[33mUPDATE "invitations" SET "accepted" = ? WHERE "invitations"."id" = ?[0m  [["accepted", true], ["id", 1]]
+  [1m[35m (0.0ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.0ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.1ms)[0m  [1m[32mINSERT INTO "credit_transactions" ("user_id", "cents", "source_type", "source_id") VALUES (?, ?, ?, ?)[0m  [["user_id", 1], ["cents", 500], ["source_type", "Invitation"], ["source_id", 1]]
+  [1m[35m (0.0ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+Completed 200 OK in 7ms (Views: 0.2ms | ActiveRecord: 0.7ms)
+  [1m[35m (0.0ms)[0m  [1m[34mSELECT SUM("credit_transactions"."cents") FROM "credit_transactions" WHERE "credit_transactions"."user_id" = 1[0m
+  [1m[35m (0.5ms)[0m  [1m[31mrollback transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mUser Exists (0.1ms)[0m  [1m[34mSELECT  1 AS one FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "foo-b94b4e77-4734-43a0-ad9e-110c5ca5346d@example.com"], ["LIMIT", 1]]
+  [1m[35mSQL (0.3ms)[0m  [1m[32mINSERT INTO "users" ("email", "name") VALUES (?, ?)[0m  [["email", "foo-b94b4e77-4734-43a0-ad9e-110c5ca5346d@example.com"], ["name", "john doe"]]
+[ActiveJob] Enqueued ActionMailer::DeliveryJob (Job ID: e0872346-1a68-4ba7-b730-397913ad0191) to Async(mailers) with arguments: "AppMailer", "signup_email", "deliver_now", #<GlobalID:0x007fab85905208 @uri=#<URI::GID gid://dummy/User/1>>
+  [1m[35m (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.0ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[35mSQL (0.1ms)[0m  [1m[32mINSERT INTO "invitations" ("inviter_id", "invitee_email") VALUES (?, ?)[0m  [["inviter_id", 1], ["invitee_email", "invitee@example.com"]]
+[ActiveJob] Enqueued ActionMailer::DeliveryJob (Job ID: 21d997c2-2230-4cf1-89d6-8ca9b4853169) to Async(mailers) with arguments: "AppMailer", "invitation_email", "deliver_now", #<GlobalID:0x007fab858ec0c8 @uri=#<URI::GID gid://dummy/Invitation/1>>
+  [1m[35m (0.0ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[36mInvitation Load (0.1ms)[0m  [1m[34mSELECT  "invitations".* FROM "invitations" WHERE "invitations"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mInvitation Load (0.1ms)[0m  [1m[34mSELECT  "invitations".* FROM "invitations" WHERE "invitations"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+Processing by InvitationsController#accept as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mInvitation Load (0.0ms)[0m  [1m[34mSELECT  "invitations".* FROM "invitations" WHERE "invitations"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mUser Exists (0.2ms)[0m  [1m[34mSELECT  1 AS one FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "invitee@example.com"], ["LIMIT", 1]]
+  [1m[35mSQL (0.1ms)[0m  [1m[32mINSERT INTO "users" ("email") VALUES (?)[0m  [["email", "invitee@example.com"]]
+[ActiveJob] Enqueued ActionMailer::DeliveryJob (Job ID: d4cb389a-e6ed-4c3c-a6b4-3a73d3870830) to Async(mailers) with arguments: "AppMailer", "welcome_email", "deliver_now", #<GlobalID:0x007fab858bfa78 @uri=#<URI::GID gid://dummy/User/2>>
+  [1m[35m (0.0ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[35m (0.0ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[35mSQL (0.1ms)[0m  [1m[33mUPDATE "invitations" SET "invitee_id" = ? WHERE "invitations"."id" = ?[0m  [["invitee_id", 2], ["id", 1]]
+  [1m[35m (0.0ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.0ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.1ms)[0m  [1m[33mUPDATE "invitations" SET "accepted" = ? WHERE "invitations"."id" = ?[0m  [["accepted", true], ["id", 1]]
+  [1m[35m (0.0ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.0ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.1ms)[0m  [1m[32mINSERT INTO "credit_transactions" ("user_id", "cents", "source_type", "source_id") VALUES (?, ?, ?, ?)[0m  [["user_id", 1], ["cents", 500], ["source_type", "Invitation"], ["source_id", 1]]
+  [1m[35m (0.0ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+[ActiveJob] Enqueued ActionMailer::DeliveryJob (Job ID: afb874c8-2840-4d47-9496-01d98ae46604) to Async(mailers) with arguments: "AppMailer", "notify_payment", "deliver_now", #<GlobalID:0x007fab8587d970 @uri=#<URI::GID gid://dummy/CreditTransaction/1>>
+Completed 200 OK in 9ms (Views: 0.2ms | ActiveRecord: 1.0ms)
+  [1m[36mInvitation Load (0.0ms)[0m  [1m[34mSELECT  "invitations".* FROM "invitations" WHERE "invitations"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[35m (0.5ms)[0m  [1m[31mrollback transaction[0m
+  [1m[36mCreditTransaction Load (0.1ms)[0m  [1m[34mSELECT  "credit_transactions".* FROM "credit_transactions" WHERE "credit_transactions"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mUser Exists (0.1ms)[0m  [1m[34mSELECT  1 AS one FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "foo-14b6287a-196d-4e3c-bdf2-b0ca4aebe53a@example.com"], ["LIMIT", 1]]
+  [1m[35mSQL (0.2ms)[0m  [1m[32mINSERT INTO "users" ("email", "name") VALUES (?, ?)[0m  [["email", "foo-14b6287a-196d-4e3c-bdf2-b0ca4aebe53a@example.com"], ["name", "john doe"]]
+[ActiveJob] Enqueued ActionMailer::DeliveryJob (Job ID: 931b6152-600e-4904-bb50-bbd9c4099620) to Async(mailers) with arguments: "AppMailer", "signup_email", "deliver_now", #<GlobalID:0x007fab85847320 @uri=#<URI::GID gid://dummy/User/1>>
+  [1m[35m (0.0ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.0ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[35mSQL (0.2ms)[0m  [1m[32mINSERT INTO "invitations" ("inviter_id", "invitee_email") VALUES (?, ?)[0m  [["inviter_id", 1], ["invitee_email", "invitee@foo.com"]]
+[ActiveJob] Enqueued ActionMailer::DeliveryJob (Job ID: e01cc06d-747e-461c-aaf8-548e690187b3) to Async(mailers) with arguments: "AppMailer", "invitation_email", "deliver_now", #<GlobalID:0x007fab8582e410 @uri=#<URI::GID gid://dummy/Invitation/1>>
+  [1m[35m (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.4ms)[0m  [1m[31mrollback transaction[0m
+  [1m[36mInvitation Load (0.2ms)[0m  [1m[34mSELECT  "invitations".* FROM "invitations" WHERE "invitations"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mUser Exists (0.1ms)[0m  [1m[34mSELECT  1 AS one FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "foo-4d445218-a1dd-4d23-b245-1c1f8c19cdca@example.com"], ["LIMIT", 1]]
+  [1m[35mSQL (0.2ms)[0m  [1m[32mINSERT INTO "users" ("email", "name") VALUES (?, ?)[0m  [["email", "foo-4d445218-a1dd-4d23-b245-1c1f8c19cdca@example.com"], ["name", "john doe"]]
+[ActiveJob] Enqueued ActionMailer::DeliveryJob (Job ID: a8651ed9-e94c-45a6-a08a-643a26b88b27) to Async(mailers) with arguments: "AppMailer", "signup_email", "deliver_now", #<GlobalID:0x007fab8580bbe0 @uri=#<URI::GID gid://dummy/User/1>>
+  [1m[35m (0.0ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.0ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[35mSQL (0.1ms)[0m  [1m[32mINSERT INTO "invitations" ("inviter_id", "invitee_email") VALUES (?, ?)[0m  [["inviter_id", 1], ["invitee_email", "invitee@foo.com"]]
+  [1m[35m (0.0ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.4ms)[0m  [1m[31mrollback transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT COUNT(*) FROM "users"[0m
+  [1m[35m (0.0ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mUser Exists (0.1ms)[0m  [1m[34mSELECT  1 AS one FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "foo-716defe5-90c3-49fd-b22f-3fa46a5d03b6@example.com"], ["LIMIT", 1]]
+  [1m[35mSQL (0.3ms)[0m  [1m[32mINSERT INTO "users" ("email", "name") VALUES (?, ?)[0m  [["email", "foo-716defe5-90c3-49fd-b22f-3fa46a5d03b6@example.com"], ["name", "john doe"]]
+[ActiveJob] Enqueued ActionMailer::DeliveryJob (Job ID: 678df013-413d-4d49-9f67-54b557a8123f) to Async(mailers) with arguments: "AppMailer", "signup_email", "deliver_now", #<GlobalID:0x007fab817bdd18 @uri=#<URI::GID gid://dummy/User/1>>
+  [1m[35m (0.0ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.0ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.1ms)[0m  [1m[32mINSERT INTO "invitations" ("inviter_id", "invitee_email") VALUES (?, ?)[0m  [["inviter_id", 1], ["invitee_email", "invitee@foo.com"]]
+[ActiveJob] Enqueued ActionMailer::DeliveryJob (Job ID: ffa4a1c3-5c98-445e-9a33-ad6af8faea46) to Async(mailers) with arguments: "AppMailer", "invitation_email", "deliver_now", #<GlobalID:0x007fab817af740 @uri=#<URI::GID gid://dummy/Invitation/1>>
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mInvitation Load (0.5ms)[0m  [1m[34mSELECT  "invitations".* FROM "invitations" WHERE "invitations"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT COUNT(*) FROM "users"[0m
+  [1m[35m (0.4ms)[0m  [1m[31mrollback transaction[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1m[34mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "ar_internal_metadata"."value" FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ?[0m  [["key", :environment]]
+  [1m[36mActiveRecord::SchemaMigration Load (0.0ms)[0m  [1m[34mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (0.0ms)[0m  [1m[34mSELECT "ar_internal_metadata"."value" FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ?[0m  [["key", :environment]]
+  [1m[36mActiveRecord::SchemaMigration Load (0.0ms)[0m  [1m[34mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "ar_internal_metadata"."value" FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ?[0m  [["key", :environment]]
+  [1m[35m (1.1ms)[0m  [1m[35mCREATE TABLE "credit_transactions" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "user_id" integer NOT NULL, "cents" integer DEFAULT 0 NOT NULL, "source_type" varchar NOT NULL, "source_id" integer NOT NULL)[0m
+  [1m[35m (0.3ms)[0m  [1m[34mselect sqlite_version(*)[0m
+  [1m[35m (0.7ms)[0m  [1m[35mCREATE  INDEX "index_credit_transactions_on_source_type_and_source_id" ON "credit_transactions" ("source_type", "source_id")[0m
+  [1m[35m (0.1ms)[0m  [1m[34m            SELECT sql
+            FROM sqlite_master
+            WHERE name='index_credit_transactions_on_source_type_and_source_id' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_credit_transactions_on_source_type_and_source_id' AND type='index'
+[0m
+  [1m[35m (0.8ms)[0m  [1m[35mCREATE  INDEX "index_credit_transactions_on_user_id" ON "credit_transactions" ("user_id")[0m
+  [1m[35m (0.7ms)[0m  [1m[35mCREATE TABLE "invitations" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "inviter_id" integer NOT NULL, "invitee_id" integer, "invitee_email" varchar NOT NULL, "accepted" boolean DEFAULT 'f')[0m
+  [1m[35m (0.7ms)[0m  [1m[35mCREATE  INDEX "index_invitations_on_invitee_id" ON "invitations" ("invitee_id")[0m
+  [1m[35m (0.1ms)[0m  [1m[34m            SELECT sql
+            FROM sqlite_master
+            WHERE name='index_invitations_on_invitee_id' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_invitations_on_invitee_id' AND type='index'
+[0m
+  [1m[35m (0.7ms)[0m  [1m[35mCREATE  INDEX "index_invitations_on_inviter_id" ON "invitations" ("inviter_id")[0m
+  [1m[35m (0.6ms)[0m  [1m[35mCREATE TABLE "users" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "email" varchar, "name" varchar)[0m
+  [1m[35m (0.6ms)[0m  [1m[35mCREATE TABLE "schema_migrations" ("version" varchar NOT NULL PRIMARY KEY)[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT version FROM "schema_migrations"[0m
+  [1m[35m (0.6ms)[0m  [1m[32mINSERT INTO "schema_migrations" (version) VALUES (20170320162131)[0m
+  [1m[35m (0.6ms)[0m  [1m[32mINSERT INTO "schema_migrations" (version) VALUES
+(20170317141651),
+(20170320153113);
+
+[0m
+  [1m[35m (0.7ms)[0m  [1m[35mCREATE TABLE "ar_internal_metadata" ("key" varchar NOT NULL PRIMARY KEY, "value" varchar, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL)[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.1ms)[0m  [1m[34mSELECT  "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? LIMIT ?[0m  [["key", :environment], ["LIMIT", 1]]
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35mSQL (0.2ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["key", "environment"], ["value", "test"], ["created_at", 2017-04-27 21:06:21 UTC], ["updated_at", 2017-04-27 21:06:21 UTC]]
+  [1m[35m (0.6ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.1ms)[0m  [1m[34mSELECT  "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? LIMIT ?[0m  [["key", :environment], ["LIMIT", 1]]
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.5ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mUser Exists (0.2ms)[0m  [1m[34mSELECT  1 AS one FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "foo-1eb1d635-4f31-4a5d-a1dc-2fa18f308b26@example.com"], ["LIMIT", 1]]
+  [1m[35mSQL (0.5ms)[0m  [1m[32mINSERT INTO "users" ("email", "name") VALUES (?, ?)[0m  [["email", "foo-1eb1d635-4f31-4a5d-a1dc-2fa18f308b26@example.com"], ["name", "john doe"]]
+[ActiveJob] Enqueued ActionMailer::DeliveryJob (Job ID: 0bf9a633-bc25-4a54-bf69-3478fea46b2f) to Async(mailers) with arguments: "AppMailer", "signup_email", "deliver_now", #<GlobalID:0x007fdbd6fa14f0 @uri=#<URI::GID gid://dummy/User/1>>
+  [1m[35m (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[36mUser Load (0.6ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.2ms)[0m  [1m[32mINSERT INTO "invitations" ("inviter_id", "invitee_email") VALUES (?, ?)[0m  [["inviter_id", 1], ["invitee_email", "invitee@example.com"]]
+[ActiveJob] Enqueued ActionMailer::DeliveryJob (Job ID: 1aabf346-a6d8-485e-9fcd-48a156885504) to Async(mailers) with arguments: "AppMailer", "invitation_email", "deliver_now", #<GlobalID:0x007fdbd6ff1f18 @uri=#<URI::GID gid://dummy/Invitation/1>>
+  [1m[35m (0.0ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[36mInvitation Load (0.2ms)[0m  [1m[34mSELECT  "invitations".* FROM "invitations" WHERE "invitations"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mInvitation Load (0.2ms)[0m  [1m[34mSELECT  "invitations".* FROM "invitations" WHERE "invitations"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+Processing by InvitationsController#accept as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mInvitation Load (0.1ms)[0m  [1m[34mSELECT  "invitations".* FROM "invitations" WHERE "invitations"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[35m (0.0ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mUser Exists (0.1ms)[0m  [1m[34mSELECT  1 AS one FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "invitee@example.com"], ["LIMIT", 1]]
+  [1m[35mSQL (0.1ms)[0m  [1m[32mINSERT INTO "users" ("email") VALUES (?)[0m  [["email", "invitee@example.com"]]
+[ActiveJob] Enqueued ActionMailer::DeliveryJob (Job ID: 07f87c74-d75f-4d95-b813-9a479bb323df) to Async(mailers) with arguments: "AppMailer", "welcome_email", "deliver_now", #<GlobalID:0x007fdbd904f3c8 @uri=#<URI::GID gid://dummy/User/2>>
+  [1m[35m (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.0ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[35mSQL (0.1ms)[0m  [1m[33mUPDATE "invitations" SET "invitee_id" = ? WHERE "invitations"."id" = ?[0m  [["invitee_id", 2], ["id", 1]]
+  [1m[35m (0.0ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.0ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.1ms)[0m  [1m[33mUPDATE "invitations" SET "accepted" = ? WHERE "invitations"."id" = ?[0m  [["accepted", true], ["id", 1]]
+  [1m[35m (0.0ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.1ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.2ms)[0m  [1m[32mINSERT INTO "credit_transactions" ("user_id", "cents", "source_type", "source_id") VALUES (?, ?, ?, ?)[0m  [["user_id", 1], ["cents", 500], ["source_type", "Invitation"], ["source_id", 1]]
+  [1m[35m (0.0ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+[ActiveJob] Enqueued ActionMailer::DeliveryJob (Job ID: 9c779795-1e5e-45bd-86ab-807c34303981) to Async(mailers) with arguments: "AppMailer", "notify_payment", "deliver_now", #<GlobalID:0x007fdbd4871b50 @uri=#<URI::GID gid://dummy/CreditTransaction/1>>
+Completed 200 OK in 29ms (Views: 0.3ms | ActiveRecord: 1.4ms)
+  [1m[36mInvitation Load (0.0ms)[0m  [1m[34mSELECT  "invitations".* FROM "invitations" WHERE "invitations"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[35m (0.4ms)[0m  [1m[31mrollback transaction[0m
+  [1m[36mCreditTransaction Load (0.1ms)[0m  [1m[34mSELECT  "credit_transactions".* FROM "credit_transactions" WHERE "credit_transactions"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mUser Exists (0.1ms)[0m  [1m[34mSELECT  1 AS one FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "foo-154d3843-d0f3-4636-bab4-9101751e7bbc@example.com"], ["LIMIT", 1]]
+  [1m[35mSQL (0.2ms)[0m  [1m[32mINSERT INTO "users" ("email", "name") VALUES (?, ?)[0m  [["email", "foo-154d3843-d0f3-4636-bab4-9101751e7bbc@example.com"], ["name", "john doe"]]
+[ActiveJob] Enqueued ActionMailer::DeliveryJob (Job ID: 493ed79a-d638-4a2c-a7e6-0c763d4b4271) to Async(mailers) with arguments: "AppMailer", "signup_email", "deliver_now", #<GlobalID:0x007fdbd6f9b7f8 @uri=#<URI::GID gid://dummy/User/1>>
+  [1m[35m (0.0ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.0ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[35mSQL (0.1ms)[0m  [1m[32mINSERT INTO "invitations" ("inviter_id", "invitee_email") VALUES (?, ?)[0m  [["inviter_id", 1], ["invitee_email", "invitee@example.com"]]
+[ActiveJob] Enqueued ActionMailer::DeliveryJob (Job ID: 5e995407-df13-4b94-a3c0-7d431b9430b4) to Async(mailers) with arguments: "AppMailer", "invitation_email", "deliver_now", #<GlobalID:0x007fdbd319a3c8 @uri=#<URI::GID gid://dummy/Invitation/1>>
+  [1m[36mInvitation Load (0.1ms)[0m  [1m[34mSELECT  "invitations".* FROM "invitations" WHERE "invitations"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[35m (0.0ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT COUNT(*) FROM "users"[0m
+Processing by InvitationsController#accept as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mInvitation Load (0.1ms)[0m  [1m[34mSELECT  "invitations".* FROM "invitations" WHERE "invitations"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[35m (0.0ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mUser Exists (0.1ms)[0m  [1m[34mSELECT  1 AS one FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "invitee@example.com"], ["LIMIT", 1]]
+  [1m[35mSQL (0.1ms)[0m  [1m[32mINSERT INTO "users" ("email") VALUES (?)[0m  [["email", "invitee@example.com"]]
+  [1m[35m (0.0ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.0ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mUser Load (0.0ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[35mSQL (0.1ms)[0m  [1m[33mUPDATE "invitations" SET "invitee_id" = ? WHERE "invitations"."id" = ?[0m  [["invitee_id", 2], ["id", 1]]
+  [1m[35m (0.0ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.0ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.1ms)[0m  [1m[33mUPDATE "invitations" SET "accepted" = ? WHERE "invitations"."id" = ?[0m  [["accepted", true], ["id", 1]]
+  [1m[35m (0.0ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.0ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.1ms)[0m  [1m[32mINSERT INTO "credit_transactions" ("user_id", "cents", "source_type", "source_id") VALUES (?, ?, ?, ?)[0m  [["user_id", 1], ["cents", 500], ["source_type", "Invitation"], ["source_id", 1]]
+  [1m[35m (0.0ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+[ActiveJob] Enqueued ActionMailer::DeliveryJob (Job ID: 506c8a57-8f4a-490b-8fd3-1f38b565eca2) to Async(mailers) with arguments: "AppMailer", "notify_payment", "deliver_now", #<GlobalID:0x007fdbd6f4d030 @uri=#<URI::GID gid://dummy/CreditTransaction/1>>
+Completed 200 OK in 9ms (Views: 0.2ms | ActiveRecord: 1.0ms)
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT COUNT(*) FROM "users"[0m
+  [1m[36mInvitation Load (0.0ms)[0m  [1m[34mSELECT  "invitations".* FROM "invitations" WHERE "invitations"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mUser Load (0.0ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[35m (0.5ms)[0m  [1m[31mrollback transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mCreditTransaction Load (0.1ms)[0m  [1m[34mSELECT  "credit_transactions".* FROM "credit_transactions" WHERE "credit_transactions"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mUser Exists (0.1ms)[0m  [1m[34mSELECT  1 AS one FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "foo-f4e99ce4-53a7-4349-ac48-c93d13a159b5@example.com"], ["LIMIT", 1]]
+  [1m[35mSQL (0.2ms)[0m  [1m[32mINSERT INTO "users" ("email", "name") VALUES (?, ?)[0m  [["email", "foo-f4e99ce4-53a7-4349-ac48-c93d13a159b5@example.com"], ["name", "john doe"]]
+[ActiveJob] Enqueued ActionMailer::DeliveryJob (Job ID: 900f3699-b6e2-460d-9fb5-0dde8940655c) to Async(mailers) with arguments: "AppMailer", "signup_email", "deliver_now", #<GlobalID:0x007fdbd302fc68 @uri=#<URI::GID gid://dummy/User/1>>
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[35m (0.0ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.0ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.1ms)[0m  [1m[32mINSERT INTO "invitations" ("inviter_id", "invitee_email") VALUES (?, ?)[0m  [["inviter_id", 1], ["invitee_email", "invitee@example.com"]]
+[ActiveJob] Enqueued ActionMailer::DeliveryJob (Job ID: a6005995-41f0-40c5-805b-07e36733e42c) to Async(mailers) with arguments: "AppMailer", "invitation_email", "deliver_now", #<GlobalID:0x007fdbd6f85340 @uri=#<URI::GID gid://dummy/Invitation/1>>
+  [1m[36mInvitation Load (0.1ms)[0m  [1m[34mSELECT  "invitations".* FROM "invitations" WHERE "invitations"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[35m (0.0ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT SUM("credit_transactions"."cents") FROM "credit_transactions" WHERE "credit_transactions"."user_id" = 1[0m
+Processing by InvitationsController#accept as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mInvitation Load (0.1ms)[0m  [1m[34mSELECT  "invitations".* FROM "invitations" WHERE "invitations"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[35m (0.0ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mUser Exists (0.1ms)[0m  [1m[34mSELECT  1 AS one FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "invitee@example.com"], ["LIMIT", 1]]
+  [1m[35mSQL (0.1ms)[0m  [1m[32mINSERT INTO "users" ("email") VALUES (?)[0m  [["email", "invitee@example.com"]]
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+[ActiveJob] Enqueued ActionMailer::DeliveryJob (Job ID: 04fbbc05-7c3f-41fc-8adf-01ccd2657997) to Async(mailers) with arguments: "AppMailer", "welcome_email", "deliver_now", #<GlobalID:0x007fdbd6f47ef0 @uri=#<URI::GID gid://dummy/User/2>>
+  [1m[35m (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.0ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[35mSQL (0.1ms)[0m  [1m[33mUPDATE "invitations" SET "invitee_id" = ? WHERE "invitations"."id" = ?[0m  [["invitee_id", 2], ["id", 1]]
+  [1m[35m (0.0ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.0ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.1ms)[0m  [1m[33mUPDATE "invitations" SET "accepted" = ? WHERE "invitations"."id" = ?[0m  [["accepted", true], ["id", 1]]
+  [1m[35m (0.0ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.0ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.1ms)[0m  [1m[32mINSERT INTO "credit_transactions" ("user_id", "cents", "source_type", "source_id") VALUES (?, ?, ?, ?)[0m  [["user_id", 1], ["cents", 500], ["source_type", "Invitation"], ["source_id", 1]]
+  [1m[35m (0.0ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+Completed 200 OK in 9ms (Views: 0.2ms | ActiveRecord: 1.0ms)
+  [1m[35m (0.0ms)[0m  [1m[34mSELECT SUM("credit_transactions"."cents") FROM "credit_transactions" WHERE "credit_transactions"."user_id" = 1[0m
+  [1m[35m (0.4ms)[0m  [1m[31mrollback transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT COUNT(*) FROM "users"[0m
+  [1m[35m (0.0ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mUser Exists (0.1ms)[0m  [1m[34mSELECT  1 AS one FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "john@doe.com"], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[31mROLLBACK TO SAVEPOINT active_record_1[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT COUNT(*) FROM "users"[0m
+  [1m[35m (0.1ms)[0m  [1m[31mrollback transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT COUNT(*) FROM "users"[0m
+  [1m[35m (0.1ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mUser Exists (0.1ms)[0m  [1m[34mSELECT  1 AS one FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "john@doe.com"], ["LIMIT", 1]]
+  [1m[35mSQL (0.6ms)[0m  [1m[32mINSERT INTO "users" ("email", "name") VALUES (?, ?)[0m  [["email", "john@doe.com"], ["name", "john doe"]]
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+[ActiveJob] Enqueued ActionMailer::DeliveryJob (Job ID: f68c7ff4-3a43-4fba-b31e-d1d23a075f5b) to Async(mailers) with arguments: "AppMailer", "signup_email", "deliver_now", #<GlobalID:0x007fdbd3f38b60 @uri=#<URI::GID gid://dummy/User/1>>
+  [1m[35m (0.0ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT COUNT(*) FROM "users"[0m
+  [1m[35m (0.3ms)[0m  [1m[31mrollback transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mUser Exists (0.1ms)[0m  [1m[34mSELECT  1 AS one FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "john@doe.com"], ["LIMIT", 1]]
+  [1m[35mSQL (0.2ms)[0m  [1m[32mINSERT INTO "users" ("email", "name") VALUES (?, ?)[0m  [["email", "john@doe.com"], ["name", "john doe"]]
+  [1m[35m (0.0ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.3ms)[0m  [1m[31mrollback transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mUser Exists (0.1ms)[0m  [1m[34mSELECT  1 AS one FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "foo-703528bf-9ce1-4b57-a081-b283b8dc1e2c@example.com"], ["LIMIT", 1]]
+  [1m[35mSQL (0.2ms)[0m  [1m[32mINSERT INTO "users" ("email", "name") VALUES (?, ?)[0m  [["email", "foo-703528bf-9ce1-4b57-a081-b283b8dc1e2c@example.com"], ["name", "john doe"]]
+[ActiveJob] Enqueued ActionMailer::DeliveryJob (Job ID: 25415d8a-dce9-4b4c-864f-76cda56a54f3) to Async(mailers) with arguments: "AppMailer", "signup_email", "deliver_now", #<GlobalID:0x007fdbd3ee2ad0 @uri=#<URI::GID gid://dummy/User/1>>
+  [1m[35m (0.0ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.0ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[35mSQL (0.1ms)[0m  [1m[32mINSERT INTO "invitations" ("inviter_id", "invitee_email") VALUES (?, ?)[0m  [["inviter_id", 1], ["invitee_email", "invitee@foo.com"]]
+[ActiveJob] Enqueued ActionMailer::DeliveryJob (Job ID: d05c5bdb-f1b1-47c5-8a27-347dbea36b97) to Async(mailers) with arguments: "AppMailer", "invitation_email", "deliver_now", #<GlobalID:0x007fdbd3ec9d78 @uri=#<URI::GID gid://dummy/Invitation/1>>
+  [1m[35m (0.0ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[36mInvitation Load (0.1ms)[0m  [1m[34mSELECT  "invitations".* FROM "invitations" WHERE "invitations"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[35m (0.4ms)[0m  [1m[31mrollback transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT COUNT(*) FROM "users"[0m
+  [1m[35m (0.0ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mUser Exists (0.1ms)[0m  [1m[34mSELECT  1 AS one FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "foo-54ae82b1-24e1-4275-91f7-f555cadadd9d@example.com"], ["LIMIT", 1]]
+  [1m[35mSQL (0.2ms)[0m  [1m[32mINSERT INTO "users" ("email", "name") VALUES (?, ?)[0m  [["email", "foo-54ae82b1-24e1-4275-91f7-f555cadadd9d@example.com"], ["name", "john doe"]]
+[ActiveJob] Enqueued ActionMailer::DeliveryJob (Job ID: ad7d5cbc-d46e-49c4-a83d-91335d164cae) to Async(mailers) with arguments: "AppMailer", "signup_email", "deliver_now", #<GlobalID:0x007fdbd3e98098 @uri=#<URI::GID gid://dummy/User/1>>
+  [1m[35m (0.0ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.0ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.1ms)[0m  [1m[32mINSERT INTO "invitations" ("inviter_id", "invitee_email") VALUES (?, ?)[0m  [["inviter_id", 1], ["invitee_email", "invitee@foo.com"]]
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+[ActiveJob] Enqueued ActionMailer::DeliveryJob (Job ID: 6c3dbbce-8602-4d27-a429-63be8449c4ff) to Async(mailers) with arguments: "AppMailer", "invitation_email", "deliver_now", #<GlobalID:0x007fdbd3e81168 @uri=#<URI::GID gid://dummy/Invitation/1>>
+  [1m[36mInvitation Load (0.1ms)[0m  [1m[34mSELECT  "invitations".* FROM "invitations" WHERE "invitations"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[35m (0.0ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.0ms)[0m  [1m[34mSELECT COUNT(*) FROM "users"[0m
+  [1m[35m (0.4ms)[0m  [1m[31mrollback transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mUser Exists (0.1ms)[0m  [1m[34mSELECT  1 AS one FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "foo-85392e1d-df9b-4ecc-974d-6206517688b5@example.com"], ["LIMIT", 1]]
+  [1m[35mSQL (0.2ms)[0m  [1m[32mINSERT INTO "users" ("email", "name") VALUES (?, ?)[0m  [["email", "foo-85392e1d-df9b-4ecc-974d-6206517688b5@example.com"], ["name", "john doe"]]
+[ActiveJob] Enqueued ActionMailer::DeliveryJob (Job ID: 4b416bb8-c33e-489d-9019-1eb15b1a0d37) to Async(mailers) with arguments: "AppMailer", "signup_email", "deliver_now", #<GlobalID:0x007fdbd3e4a848 @uri=#<URI::GID gid://dummy/User/1>>
+  [1m[35m (0.0ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.0ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[35mSQL (0.1ms)[0m  [1m[32mINSERT INTO "invitations" ("inviter_id", "invitee_email") VALUES (?, ?)[0m  [["inviter_id", 1], ["invitee_email", "invitee@foo.com"]]
+  [1m[35m (0.0ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.4ms)[0m  [1m[31mrollback transaction[0m
