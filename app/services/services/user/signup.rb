@@ -10,15 +10,23 @@ module Services
       end
 
       def call
-        # goal:
-        # - edit after_create from user model
-        # - remove name validation from user model but add it here
-        ::User.create(params)
+        if valid?
+          create_user
+          AppMailer.signup_email(user).deliver_later
+        end
       end
 
       private
 
-      attr_reader :params
+      attr_reader :params, :user
+
+      def create_user
+        @user = ::User.create(params)
+      end
+
+      def name
+        params[:name]
+      end
     end
   end
 end
