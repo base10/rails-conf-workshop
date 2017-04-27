@@ -1,22 +1,13 @@
 class InvitationsController < ApplicationController
 
   def accept
-    if invitation.accepted?
-      render json: { errors: ['Invitation already accepted'] }, status: 422
+    service = Services::Invitation::Accept.new(invitation)
+    service.call
+
+    if service.success?
+      render json: { user: service.user }
     else
-      create_service = ::Services::User::CreateFromInvitation.new(invitation)
-      create_service.call
-
-      invitation.accepted = true
-      invitation.save
-
-      Services::User::Credit.new(
-        user: invitation.inviter,
-        cents: 500,
-        source: invitation
-      ).call
-
-      render json: { user: create_service.user }
+      render json: { errors: service.issues.full_messages }, status: 422
     end
   end
 

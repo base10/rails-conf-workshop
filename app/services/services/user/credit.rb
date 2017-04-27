@@ -1,6 +1,7 @@
 module Services
   module User
     class Credit
+      attr_reader :issues
 
       include ActiveModel::Validations
 
@@ -13,6 +14,10 @@ module Services
         notify_user_of_payment
       end
 
+      def success?
+        @issues.blank?
+      end
+
       private
 
       def create_credit_transaction
@@ -21,6 +26,8 @@ module Services
           source: source,
           cents: cents
         )
+
+        @issues = credit_transaction.errors unless credit_transaction.persisted?
       end
 
       def notify_user_of_payment
